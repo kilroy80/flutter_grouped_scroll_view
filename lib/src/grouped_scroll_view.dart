@@ -290,7 +290,9 @@ class GroupedScrollView<T, H> extends StatelessWidget {
       }
       List<Widget> section = [];
       if (0 == i && null != headerBuilder) section.add(headerBuilder!(context));
-      section.add(SliverPinnedHeader(
+      section.add(options.enableStickyEffect == true ? SliverPinnedHeader(
+        child: options.stickyHeaderBuilder(context, header, i),
+      ) : SliverToBoxAdapter(
         child: options.stickyHeaderBuilder(context, header, i),
       ));
       section.add(null != gridDelegate
